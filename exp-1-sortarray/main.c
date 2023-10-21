@@ -11,7 +11,7 @@ typedef struct
     /* data */
 }words;
 
-words *splistString(char array[], uint8_t size){
+words* splistString(char array[], uint8_t size){
     words *arr = (words*)malloc(sizeof(words) * size);
     uint8_t index =0;
     uint8_t count =0;
