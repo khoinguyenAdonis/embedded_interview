@@ -7,7 +7,7 @@ bool checkYear(int countYear){
     if(((countYear % 4 ==0 && countYear % 100 ==0 && countYear % 400 != 0 ) || countYear % 4 != 0)) return false;
     else return true;
 }
-int result (){
+void result (){
     int countDay = 0;
     int coutnYear = Date.year;
     for (coutnYear ; coutnYear < dateCurrent.year ; coutnYear++){
