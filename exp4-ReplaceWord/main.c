@@ -3,6 +3,7 @@
     yeu cau 3 . Thay the chuoi */
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 void upper(char *string){
     while (*string != '\0'){
         if (*string == '.'){
@@ -47,25 +48,25 @@ uint8_t numberWord(char *arr){
     }
     return coutn;
 }
-void replaceWord(char *string, char *arr, char* arrReplace ){
+char* replaceWord(char *string, char *arr, char* arrReplace ){
     int location = findArray(arr,string);
     uint8_t numberReplace = numberWord(arr);
     uint8_t numberString = numberWord(string);
     uint8_t numberArrR = numberWord(arrReplace);
     char* Sstring = string + location;
     char* Aarayy = Sstring + numberReplace;
-    char array[numberString+numberArrR-numberReplace];
-    uint8_t index = 0;
+    char* array = (char*)malloc(sizeof(char)*(numberString+numberArrR-numberReplace+1));
+    char* stringrl = array;
     if (location > -1){
         while (string < Sstring){
-            array[index] = *string;
+            *array = *string;
             string++;
-            index++;
+            array++;
         }
         while(Sstring < Aarayy && *arrReplace != '\0'){
-            array[index] = *arrReplace; 
+            *array = *arrReplace; 
             arrReplace++; 
-            index++;            
+            array++;            
             Sstring++; 
             string++;        
             if(*arrReplace == '\0' && Sstring< Aarayy){
@@ -76,33 +77,31 @@ void replaceWord(char *string, char *arr, char* arrReplace ){
             }
             else if (Sstring == Aarayy && *arrReplace != '\0'){
                 while(*arrReplace != '\0'){
-                    array[index] = *arrReplace;
-                    index ++;
+                    *array = *arrReplace;
+                    array++;
                     arrReplace++;          
-            }          
-                    
+            }                              
         }}
         while (*string != '\0'){
-            array[index] = *string;
+            *array = *string;
             string++;
-            index++;
+            array++;
         }
-        if (*string == '\0')
-        {
-            array[index] = '\0';
-        }        
-        printf("%s\n", array);
-
+        if (*string == '\0'){
+            *array = '\0';
+        } 
+        return stringrl;     
     }else printf("Khong tim thay chuoi can thay the\n");
 }
 int main (){
     char string[] = "to learn around the world learn to do annything. today we learn ab that";
-//    upper(string);
+   // upper(string);
     char f[] = "learn";
     printf("%s\n",string);
     int location = findArray(f,string);
     printf("Text: %s\n",f);
-    printf((location>-1)?"Ket qua: co\nVi Tri: %d\n":"ket qua: khong co\n", location);   
-    replaceWord(string,"ab","about");
+    printf((location>-1)?"Ket qua: Co\nVi Tri: %d\n":"Ket qua: Khong co\n", location);   
+    char* replaWord = replaceWord(string,"ab","about");
+    printf("%s\n",replaWord);
     return 0;
 }
