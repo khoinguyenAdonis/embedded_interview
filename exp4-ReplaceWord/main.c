@@ -20,23 +20,29 @@ void upper(char *string){
 int findArray(char *arr, char *string){
     int count = 0;
     char *ptr = arr;
-    while (*string != '\0'){
-        if(*string == *arr ){
-            while (*string == *arr || *arr == '\0'){
-                if(*string == ' ' && *arr != '\0' || *arr !='\0' && *string == '\0' || *arr == '\0' && *string != ' ' ){                  
-                     break;
-                }
-                else if (*arr == '\0'){                    
+    char *ptz;
+    while (*string != '\0'){       
+        ptz = string;       
+ 
+        while(*string == *arr ){
+            if(*string == *arr)
+            {
+                arr++;  
+                if (*arr == '\0')
+                {
                     return count;
-                }           
-                string++;
-                arr++;
-            }count++ ;        
-        }
+                }
+            }
+          
+             else if (arr > ptr)
+            {
+                arr = ptr;
+                string = ptz;                 
+            }
+            string++;    
+        }   
         count++;
         string++;
-        arr = ptr;
-
     }
     return count = - 1;
 }
@@ -96,12 +102,12 @@ char* replaceWord(char *string, char *arr, char* arrReplace ){
 int main (){
     char string[] = "to learn around the world learn to do annything. today we learn ab that";
    // upper(string);
-    char f[] = "learn";
+    char f[] = "annything";
     printf("%s\n",string);
     int location = findArray(f,string);
     printf("Text: %s\n",f);
     printf((location>-1)?"Ket qua: Co\nVi Tri: %d\n":"Ket qua: Khong co\n", location);   
-    char* replaWord = replaceWord(string,"ab","about");
+    char* replaWord = replaceWord(string,"annything","about");
     printf("%s\n",replaWord);
     return 0;
 }
