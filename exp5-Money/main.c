@@ -19,7 +19,7 @@ char* numBer2Word(int number){
 }
 char* position(int location){
     switch (location){
-    case 1  : return "dong.\n"     ;
+    case 1  : return "dong.\n"    ;
     case 2  : return "muoi "      ; 
     case 3  : return "tram "      ; 
     case 4  : return "nghin "     ; 
@@ -89,7 +89,7 @@ void resufl(char* array){
             }
         }
         else if (surplus == 1 && location == 11 ||surplus == 1 && location == 8 ||surplus == 1 && location == 5 ||surplus == 1 && location == 2){
-            printf("%s",position(location));
+            printf("muoi` ");
             location--;
             number = number/10;
         }
@@ -105,7 +105,7 @@ void resufl(char* array){
     }
 }
 int main (){
-    char array[] = "210300211002";
+    char array[] = "210300241012";
     resufl(array);
     return 0;   
 }
