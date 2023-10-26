@@ -48,6 +48,7 @@ void resufl(char* array){
     uint8_t location = numberChar(array);
     long long int number = atoll(array);
     long long int  sum =0;
+    long long int  a = 0;
     uint8_t surplus = 0;
     while (number > 0){
         surplus = number%10;
@@ -65,15 +66,27 @@ void resufl(char* array){
                 printf("%s%s",numBer2Word(surplus), position(location));
                 location --;
                 number = number/10;
+            }else if (location == 2||location == 5||location == 8 ||location ==11){
+                a = number/10;
+                surplus = a%10;
+                if (surplus != 0)
+                {
+                    printf("le ");
+                    location --;
+                    number = number/10;
+                }
+                else{
+                location --;
+                number = number/10;}
             }
             else{
+                printf("%s", position(location));
                 location --;
                 number = number/10;
                 if (location < 0 ){
                     break;
                 }                 
             }
-   
         }
         else if (surplus == 1 && location == 11 ||surplus == 1 && location == 8 ||surplus == 1 && location == 5 ||surplus == 1 && location == 2){
             printf("%s",position(location));
@@ -92,7 +105,7 @@ void resufl(char* array){
     }
 }
 int main (){
-    char array[] = "1012";
+    char array[] = "210300211002";
     resufl(array);
     return 0;   
 }
